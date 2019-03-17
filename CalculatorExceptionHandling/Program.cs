@@ -33,7 +33,7 @@ namespace CalculatorExceptionHandling
                 {
                     ArgumentException argumentException = new ArgumentException(firstNumber.ToString(), ex.Message);
                     Console.WriteLine(firstNumberString + " - " + ex.Message);
-                    Console.WriteLine("enter your FIRST number - ");
+                    //Console.WriteLine("enter your FIRST number - ");
                 }
             }
 
@@ -54,7 +54,7 @@ namespace CalculatorExceptionHandling
                 {
                     ArgumentException argumentException = new ArgumentException(secondNumber.ToString(), ex.Message);
                     Console.WriteLine(secondNumberString + " - " + ex.Message);
-                    Console.WriteLine("enter your SECOND number - ");
+                    //Console.WriteLine("enter your SECOND number - ");
                 }
             }
 
@@ -69,46 +69,36 @@ namespace CalculatorExceptionHandling
                 Console.WriteLine("enter your option for the numbers - ");
                 string option = Console.ReadLine();
 
-                try
+                if ((option == "add") || (option == "subtract") || (option == "multiply") || (option == "divide"))
                 {
-                    if ((option == "add") || (option == "subtract") || (option == "multiply") || (option == "divide"))
+                    // Use methods for each type of calculation.
+                    if (option == "add")
                     {
-                        // Use methods for each type of calculation.
-                        if (option == "add")
-                        {
-                            result = Add(firstNumber, secondNumber);
-                        }
-                        else if (option == "subtract")
-                        {
-                            result = Subtract(firstNumber, secondNumber);
-                        }
-                        else if (option == "multiply")
-                        {
-                            result = Multiply(firstNumber, secondNumber);
-                        }
-                        else if (option == "divide")
-                        {
-                            result = Divide(firstNumber, secondNumber);
-                        }
-
-                        Console.WriteLine($"Total = {result}");
-                        inputValidated = true;
+                        result = Add(firstNumber, secondNumber);
+                    }
+                    else if (option == "subtract")
+                    {
+                        result = Subtract(firstNumber, secondNumber);
+                    }
+                    else if (option == "multiply")
+                    {
+                        result = Multiply(firstNumber, secondNumber);
+                    }
+                    else if (option == "divide")
+                    {
+                        result = Divide(firstNumber, secondNumber);
                     }
 
+                    Console.WriteLine($"Total = {result}");
+                    inputValidated = true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    ArgumentException argumentException = new ArgumentException(ex.Message);
-                    Console.WriteLine(option + " - " + ex.Message);
-                    Console.WriteLine("add " + firstNumber + " and " + secondNumber);
-                    Console.WriteLine("subtract " + secondNumber + " from " + firstNumber);
-                    Console.WriteLine("multiply " + firstNumber + " and " + secondNumber);
-                    Console.WriteLine("divide " + secondNumber + " by " + firstNumber);
-                    Console.WriteLine("enter your option for the numbers - ");
-                }
-            }
+                    Console.WriteLine(option + " - invalid option entered");
 
-            Console.ReadLine();
+                }
+                Console.ReadLine();
+            }
         }
 
         /// <summary>
